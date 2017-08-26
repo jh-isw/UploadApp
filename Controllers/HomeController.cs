@@ -33,7 +33,6 @@ namespace UploadApp.Controllers
         }
 
         public async Task<IActionResult> Upload(List<IFormFile> files)
-        //public IActionResult Upload(List<IFormFile> files)
         {
             long size = files.Sum(f => f.Length);
 
@@ -55,17 +54,11 @@ namespace UploadApp.Controllers
                             filePath.Substring(filePath.LastIndexOf("/")+1), FileMode.Create))
                     {
                         await formFile.CopyToAsync(stream);
-                        //formFile.CopyTo(stream);
                     }
 
                     n++;
                 }
             }
-
-            // process uploaded files
-            // Don't rely on or trust the FileName property without validation.
-
-            //return Ok(new { count = files.Count, size, filePath});
 
             ViewData["fileCount"] = n;
             ViewData["neg"] = Negs[n % Negs.Count()];
