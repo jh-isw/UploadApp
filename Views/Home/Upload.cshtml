@@ -1,0 +1,10 @@
+@{
+    ViewData["Title"] = "Upload";
+}
+<h2>@ViewData["Title"].</h2>
+
+<p>@ViewData["fileCount"] files uploaded</p>
+<p>@ViewData["neg"]</p>
+<a asp-area="" asp-controller="Home" asp-action="Index">
+    <button type="button" class="btn btn-success">Upload more!</button>
+</a>
