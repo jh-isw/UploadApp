@@ -52,9 +52,12 @@ namespace UploadApp.Controllers
                 if (formFile.Length > 0)
                 {
                     filePath = Path.GetTempFileName();
+                    // extract the tempfilename without the path and tmp ending
+                    var tfn = filePath.Substring((filePath.LastIndexOf("/")+1),
+                        filePath.Length - (filePath.LastIndexOf("/")+1) - 3);
 
-                    using (var stream = new FileStream(picFolder + "/" + dtn + 
-                            filePath.Substring(filePath.LastIndexOf("/")+1), FileMode.Create))
+                    using (var stream = new FileStream(picFolder + "/" + dtn + tfn 
+                            + "jpg", FileMode.Create))
                     {
                         await formFile.CopyToAsync(stream);
                     }
