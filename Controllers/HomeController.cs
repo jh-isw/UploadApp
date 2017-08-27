@@ -44,13 +44,16 @@ namespace UploadApp.Controllers
             // count uploaded files
             int n = 0;
 
+            // get path to user's picture folder
+            var picFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            
             foreach (var formFile in files)
             {
                 if (formFile.Length > 0)
                 {
                     filePath = Path.GetTempFileName();
 
-                    using (var stream = new FileStream("/home/jh/Pictures/" + dtn + 
+                    using (var stream = new FileStream(picFolder + "/" + dtn + 
                             filePath.Substring(filePath.LastIndexOf("/")+1), FileMode.Create))
                     {
                         await formFile.CopyToAsync(stream);
